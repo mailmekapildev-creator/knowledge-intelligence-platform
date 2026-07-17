@@ -1,0 +1,38 @@
+{
+  "documents": [
+    {
+      "filename": "remote_work_policy.txt",
+      "content": "Remote Work Policy\n\nEmployees may work remotely up to 3 days per week with manager approval. All remote employees must be available on Slack during core hours, 10am-4pm local time. Expense reimbursement for home office equipment is capped at $500 per year."
+    },
+    {
+      "filename": "vacation_policy.txt",
+      "content": "Vacation Policy\n\nFull-time employees accrue 15 days of paid vacation per year. Unused vacation days roll over up to a maximum of 5 days into the next year. Vacation requests must be submitted at least 2 weeks in advance."
+    },
+    {
+      "filename": "expense_policy.txt",
+      "content": "Expense Reimbursement Policy\n\nAll business expenses must be submitted within 30 days with itemized receipts. Meals during business travel are reimbursed up to $75 per day. Airfare must be booked in economy class unless the flight exceeds 6 hours."
+    }
+  ],
+  "cases": [
+    {
+      "question": "How many days per week can employees work remotely?",
+      "expected_keywords": ["3 days", "three days"],
+      "expected_source_filenames": ["remote_work_policy.txt"]
+    },
+    {
+      "question": "How many vacation days do full-time employees accrue per year?",
+      "expected_keywords": ["15 days", "fifteen"],
+      "expected_source_filenames": ["vacation_policy.txt"]
+    },
+    {
+      "question": "What is the daily meal reimbursement limit during business travel?",
+      "expected_keywords": ["$75", "75"],
+      "expected_source_filenames": ["expense_policy.txt"]
+    },
+    {
+      "question": "What is the annual cap on home office equipment reimbursement?",
+      "expected_keywords": ["$500", "500"],
+      "expected_source_filenames": ["remote_work_policy.txt"]
+    }
+  ]
+}

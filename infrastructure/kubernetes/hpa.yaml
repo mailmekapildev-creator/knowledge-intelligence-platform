@@ -1,0 +1,36 @@
+# API tier: scale on CPU + memory -- request-driven load.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: kip-backend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kip-backend
+  minReplicas: 3
+  maxReplicas: 30
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 65
+---
+# Worker tier: scale on queue depth (via a custom metrics adapter, e.g. KEDA), NOT CPU --
+# see docs/cost-and-scalability.md for why queue depth is the correct signal here.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kip-worker-scaledobject
+spec:
+  scaleTargetRef:
+    name: kip-worker
+  minReplicaCount: 2
+  maxReplicaCount: 50
+  triggers:
+    - type: aws-sqs-queue
+      metadata:
+        queueURL: https://sqs.us-east-1.amazonaws.com/xxxxxxxxxxxx/kip-ingestion-queue
+        queueLength: "20"   # target: ~20 in-flight messages per worker replica
