@@ -18,7 +18,7 @@ That demonstrates you can call an SDK. It does not demonstrate you can build the
 around the model — ingestion at scale, hybrid retrieval, caching, security, observability,
 evaluation, and graceful degradation when a downstream dependency fails.
 
-This repo is structured so a hiring panel can look at the folder tree and the docs and see
+This repo is structured so everyone can look at the folder tree and the docs and see
 each of those concerns addressed explicitly, with the trade-offs written down rather than
 implied.
 
